@@ -1,0 +1,22 @@
+server:
+  port: 8080
+
+filter:
+  url:
+    patterns: /pckart/api/v1/brands/auth/*,
+              /pckart/api/v1/products/auth/*,
+              /pckart/api/v1/categories/auth/*,
+              /pckart/api/v1/banners/auth/*,
+
+jwt:
+  secret:
+    key:
+      products: ${JWT_SECRET_PRODUCTS}
+
+cors:
+  set:
+    allowed:
+      origins: ${CORS_ALLOWED_ORIGINS}
+               
+               
+

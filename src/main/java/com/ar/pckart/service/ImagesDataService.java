@@ -2,6 +2,7 @@ package com.ar.pckart.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -40,10 +41,16 @@ public class ImagesDataService {
         String filePath = FOLDER_PATH+productId+File.separator; // in lnux "/" ,  in windows "\\"
         // String filePath = FOLDER_PATH+productId+"/"; // in lnux "/" ,  in windows "\\"
         if(imageFile != null) {
-        	ImagesDataUtils.imageToFolder(filePath, imageFile, imageFile.getOriginalFilename());
+
+					// ImagesDataUtils.imageToFolder(filePath, imageFile, imageFile.getOriginalFilename());
+
+					String filename = Paths.get(imageFile.getOriginalFilename()).getFileName().toString();
+        	ImagesDataUtils.imageToFolder(filePath, imageFile, filename);
+
         	ImageModel mainImgMode = ImageModel.builder()
         		.filePath(filePath)
-        		.imgName(imageFile.getOriginalFilename())
+        		// .imgName(imageFile.getOriginalFilename())
+        		.imgName(filename)
         		.imgType(imageFile.getContentType())
         		.build();
         	imgData.setProductMainImage(mainImgMode);
@@ -52,10 +59,15 @@ public class ImagesDataService {
         Set<ImageModel> subImagesModelSet = new HashSet<>(); 
         for(int i=0; i< subImagesFiles.length; i++) {
         	if(subImagesFiles[i] != null) {
-        		ImagesDataUtils.imageToFolder(filePath, subImagesFiles[i], subImagesFiles[i].getOriginalFilename());
+        		// ImagesDataUtils.imageToFolder(filePath, subImagesFiles[i], subImagesFiles[i].getOriginalFilename());
+						
+						String filename = Paths.get(subImagesFiles[i].getOriginalFilename()).getFileName().toString();
+        		ImagesDataUtils.imageToFolder(filePath, subImagesFiles[i], filename);
+
         		ImageModel subImageModel = ImageModel.builder()
                 		.filePath(filePath)
-                		.imgName(subImagesFiles[i].getOriginalFilename())
+                		// .imgName(subImagesFiles[i].getOriginalFilename())
+                		.imgName(filename)
                 		.imgType(subImagesFiles[i].getContentType())
                 		.build();
         		subImagesModelSet.add(subImageModel);
@@ -94,12 +106,18 @@ public class ImagesDataService {
 
 	    // Update the productMainImage
 	    if (imageFile != null) {
-	        ImagesDataUtils.imageToFolder(filePath, imageFile, imageFile.getOriginalFilename());
+	        // ImagesDataUtils.imageToFolder(filePath, imageFile, imageFile.getOriginalFilename());
+
+					String filename = Paths.get(imageFile.getOriginalFilename()).getFileName().toString();
+	        ImagesDataUtils.imageToFolder(filePath, imageFile, filename);
+
 	        ImageModel mainImgMode = ImageModel.builder()
 	                .filePath(filePath)
-	                .imgName(imageFile.getOriginalFilename())
+	                //.imgName(imageFile.getOriginalFilename())
+	                .imgName(filename)
 	                .imgType(imageFile.getContentType())
 	                .build();
+									
 	        imgData.setProductMainImage(mainImgMode);
 	    }
 
@@ -107,10 +125,15 @@ public class ImagesDataService {
 	    Set<ImageModel> subImagesModelSet = new HashSet<>();
 	    for (int i = 0; i < subImagesFiles.length; i++) {
 	        if (subImagesFiles[i] != null) {
-	            ImagesDataUtils.imageToFolder(filePath, subImagesFiles[i], subImagesFiles[i].getOriginalFilename());
+	            // ImagesDataUtils.imageToFolder(filePath, subImagesFiles[i], subImagesFiles[i].getOriginalFilename());
+
+							String filename = Paths.get(subImagesFiles[i].getOriginalFilename()).getFileName().toString();
+	            ImagesDataUtils.imageToFolder(filePath, subImagesFiles[i], filename);
+
 	            ImageModel subImageModel = ImageModel.builder()
 	                    .filePath(filePath)
-	                    .imgName(subImagesFiles[i].getOriginalFilename())
+	                    // .imgName(subImagesFiles[i].getOriginalFilename())
+	                    .imgName(filename)
 	                    .imgType(subImagesFiles[i].getContentType())
 	                    .build();
 	            subImagesModelSet.add(subImageModel);

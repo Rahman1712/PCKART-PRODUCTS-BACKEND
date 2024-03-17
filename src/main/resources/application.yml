@@ -20,7 +20,7 @@ cors:
                ${CORS_2:http://localhost:4401},
                ${CORS_3:https://silver-maamoul-f3f282.netlify.app},
                ${CORS_4:https://golden-duckanoo-61524b.netlify.app},
-               ${CORS_5:http://localhost:4201}
+               ${CORS_5:http://localhost:4201},
                
                
 

@@ -37,7 +37,7 @@ public class ImagesDataService {
         if (!directory.exists()) {
             directory.mkdirs();
         }
-        String filePath = FOLDER_PATH+productId+"\\";
+        String filePath = FOLDER_PATH+productId+File.separator; // in lnux "/" ,  in windows "\\"
         if(imageFile != null) {
         	ImagesDataUtils.imageToFolder(filePath, imageFile, imageFile.getOriginalFilename());
         	ImageModel mainImgMode = ImageModel.builder()
@@ -88,7 +88,7 @@ public class ImagesDataService {
 			currentFile.delete();
 		}
 
-	    String filePath = FOLDER_PATH + productId + "\\";
+	    String filePath = FOLDER_PATH + productId +  File.separator ; // in lnux "/" ,  in windows "\\"
 
 	    // Update the productMainImage
 	    if (imageFile != null) {
